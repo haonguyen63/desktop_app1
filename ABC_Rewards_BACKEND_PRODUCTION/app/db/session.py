@@ -5,7 +5,7 @@ from app.db.base import Base
 from app.core.security import hash_password
 from app.models.user import User
 
-DATABASE_URL="postgresql://neondb_owner:npg_v3TGmcLtU6fx@ep-plain-cherry-a44f8xsc-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+DATABASE_URL="postgresql://neondb_owner:npg_v3TGmcLtU6fx@ep-plain-cherry-a44f8xsc-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 
 if DATABASE_URL.startswith("postgresql://"):
     DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+psycopg://")
