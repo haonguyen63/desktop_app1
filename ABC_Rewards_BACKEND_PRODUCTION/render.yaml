@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ABC_Rewards_BACKEND_PRODUCTION
+    env: python
+    buildCommand: |
+      PYTHON_VERSION=3.12.3
+      curl -s https://pyenv.run | bash
+      export PATH="$HOME/.pyenv/bin:$HOME/.pyenv/shims:$PATH"
+      pyenv install -s $PYTHON_VERSION
+      pyenv global $PYTHON_VERSION
+      python --version
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
