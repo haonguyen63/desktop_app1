@@ -1,4 +1,3 @@
-
 from fastapi import FastAPI
 from app.api.auth import router as auth_router
 from app.api.customer import router as customer_router
@@ -10,6 +9,10 @@ app=FastAPI(title="ABC Rewards Backend")
 @app.on_event("startup")
 def startup():
     init_db()
+
+@app.get("/")
+def root():
+    return {"status": "Backend running OK"}
 
 app.include_router(auth_router,prefix="/auth",tags=["auth"])
 app.include_router(customer_router,prefix="/customer",tags=["customer"])
