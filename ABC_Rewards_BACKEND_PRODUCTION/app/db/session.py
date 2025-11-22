@@ -7,6 +7,12 @@ from app.models.user import User
 
 DATABASE_URL="postgresql://neondb_owner:npg_v3TGmcLtU6fx@ep-plain-cherry-a44f8xsc-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
 
+if DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+psycopg://")
+
+if DATABASE_URL.startswith("postgresql+psycopg2://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql+psycopg2://", "postgresql+psycopg://")
+
 engine=create_engine(DATABASE_URL)
 SessionLocal=sessionmaker(bind=engine)
 
